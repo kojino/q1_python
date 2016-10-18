@@ -4,6 +4,7 @@ import json
 app = Flask(__name__)
 pets_data = []
 
+# 1
 @app.route('/hello')
 def hello():
     return 'Hello, World!'
@@ -34,9 +35,5 @@ def pets():
 def page(name):
     for pet in pets_data:
         if name == pet[0]:
-            return pet
-    return redirect(url_for('page_not_found'))
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return "not found", 404
+            return ' '.join(pet)
+    abort(404)
